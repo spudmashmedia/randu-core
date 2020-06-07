@@ -13,10 +13,30 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    - name: Install
+    run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+    
     steps:
     - uses: actions/checkout@v2
-    - name: Build
+
+    - name: Rust - Build
       run: cargo build --verbose
-    - name: Run tests
+    - name: Rust - Run tests
       run: cargo test --verbose
+
+    - name: wasm-pack - Build
+      run:  wasm-pack build
+    - name: wasm-pack - test
+      run: wasm-pack test --headless --chrome
+      run: wasm-pack test --headless --firefox
+
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@spudmashmedia'
+    - name: wasm-pack - deploy package
+      run: wasm-pack pack
+      run: wasm-pack publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
