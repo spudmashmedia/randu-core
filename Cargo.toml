@@ -3,6 +3,8 @@ name = "randu-core"
 version = "0.1.0"
 authors = ["spudmashmedia <johnnydong@spudmashmedia.com>"]
 edition = "2018"
+licence = "MIT/Apache-2.0"
+repository = "git@github.com:spudmashmedia/randu-core.git"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
