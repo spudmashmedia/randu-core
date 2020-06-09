@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Spudmash Media Pty Ltd
+ *  Licensed under the MIT License. See License.md in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 import React, { useState, useEffect } from "react";
 import { logger, get_user, LogLevel } from "../lib/wasm";
 import Profile from "./Profile";

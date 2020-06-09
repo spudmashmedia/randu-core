@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Spudmash Media Pty Ltd
+ *  Licensed under the MIT License. See License.md in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 import { useState, useEffect } from "react";
 import { getGenderArray, getNationalityArray } from "../lib/wasm";
 import { v1 as uuidv1 } from "uuid";

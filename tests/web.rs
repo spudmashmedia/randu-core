@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Spudmash Media Pty Ltd
+ *  Licensed under the MIT License. See License.md in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+ 
 //! Test suite for the Web and headless browsers.
 
 #![cfg(target_arch = "wasm32")]
