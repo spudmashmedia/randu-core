@@ -17,36 +17,6 @@ pub fn set_panic_hook() {
 }
 
 #[wasm_bindgen]
-#[derive(Debug)]
-pub enum Gender {
-    male,
-    female,
-    unknown,
-}
-
-#[wasm_bindgen]
-#[derive(Debug)]
-pub enum Nationality {
-    au,
-    br,
-    ca,
-    ch,
-    de,
-    dk,
-    es,
-    fi,
-    fr,
-    gb,
-    ie,
-    ir,
-    no,
-    nl,
-    nz,
-    tr,
-    us,
-}
-
-#[wasm_bindgen]
 extern "C" {
     #[wasm_bindgen(js_namespace = console, js_name = "log")]
     pub fn js_log(msg: &str);

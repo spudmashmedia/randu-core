@@ -63,7 +63,7 @@ fn test_map_userstruct_to_simp() {
         nat: "au".to_string(),
     };
 
-    let expected_response = models::SimpleUser::new_set(
+    let expected_response = SimpleUser::new_set(
         format!(
             "{title} {first} {last}",
             title = &test_data.name.title,
