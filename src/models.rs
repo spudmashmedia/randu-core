@@ -1,6 +1,6 @@
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Spudmash Media Pty Ltd
- *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *  Licensed under the MIT License. See License.md in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
 //!domain models for randomuser.me/api response
@@ -158,11 +158,9 @@ pub struct RandomuserResponse {
     pub info: InfoStruct,
 }
 
-
 #[wasm_bindgen]
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(PartialEq, Serialize, Deserialize, Debug)]
 pub struct SimpleUser {
-    id: String,
     name: String,
     username: String,
     password: String,
@@ -179,7 +177,6 @@ impl SimpleUser {
     #[wasm_bindgen(constructor)]
     pub fn new() -> SimpleUser {
         SimpleUser {
-            id: String::new(),
             name: String::new(),
             username: String::new(),
             password: String::new(),
@@ -193,7 +190,6 @@ impl SimpleUser {
     }
 
     pub fn new_set(
-        id: String,
         name: String,
         username: String,
         password: String,
@@ -205,7 +201,6 @@ impl SimpleUser {
         image_lrg: String,
     ) -> SimpleUser {
         SimpleUser {
-            id: id,
             name: name,
             username: username,
             password: password,
@@ -216,14 +211,6 @@ impl SimpleUser {
             image_mid: image_mid,
             image_lrg: image_lrg,
         }
-    }
-
-    pub fn get_id(&self) -> String {
-        self.id.to_string()
-    }
-
-    pub fn set_id(&mut self, val: String) {
-        self.id = val;
     }
 
     pub fn get_name(&self) -> String {

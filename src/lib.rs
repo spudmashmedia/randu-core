@@ -2,7 +2,7 @@
  *  Copyright (c) Spudmash Media Pty Ltd
  *  Licensed under the MIT License. See License.md in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
- 
+
 mod models;
 mod utils;
 
@@ -16,7 +16,6 @@ use web_sys::{Request, RequestInit, RequestMode, Response};
 fn map_userstruct_to_simp(src: &models::UserStruct) -> models::SimpleUser {
     let mut user = models::SimpleUser::new();
 
-    // user.set_id(src.id.value.unwrap());
     user.set_name(
         src.name.title.to_string(),
         src.name.first.to_string(),
@@ -25,7 +24,7 @@ fn map_userstruct_to_simp(src: &models::UserStruct) -> models::SimpleUser {
     user.set_username(src.login.username.to_string());
     user.set_password(src.login.password.to_string());
     user.set_email(src.email.to_string());
-    user.set_email(src.phone.to_string());
+    user.set_phone(src.phone.to_string());
     user.set_location(
         src.location.city.to_string(),
         src.location.state.to_string(),
@@ -88,7 +87,7 @@ pub async fn get_user_wasm(
     );
 
     let uri = format!(
-        "https://randomuser.me/api/?gender={:#?}&nat={:#?}&results={}",
+        "https://randomuser.me/api/1.3/?gender={:#?}&nat={:#?}&results={}",
         gender, nationality, limit
     );
     utils::wasm_logger(
@@ -113,3 +112,8 @@ pub async fn get_user_wasm(
     // need to fix this - returned as Any in Typescript
     Ok(JsValue::from_serde(&output).unwrap())
 }
+
+
+// LOAD UNIT TESTS
+#[cfg(test)]
+mod lib_tests;

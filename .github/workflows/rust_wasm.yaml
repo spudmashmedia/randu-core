@@ -26,6 +26,9 @@ jobs:
       - name: "[Setup wasm-pack]"
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
+      - name: "[Run Unit Test]"
+        run: cargo test
+
       - name: "[Run Test - Headless Chrome]"
         run: wasm-pack test --headless --chrome
 

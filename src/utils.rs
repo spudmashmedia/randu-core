@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Spudmash Media Pty Ltd
+ *  Licensed under the MIT License. See License.md in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+ 
 use wasm_bindgen::prelude::*;
 
 pub fn set_panic_hook() {
