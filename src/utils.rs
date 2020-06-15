@@ -19,25 +19,25 @@ pub fn set_panic_hook() {
 #[wasm_bindgen]
 extern "C" {
     #[wasm_bindgen(js_namespace = console, js_name = "log")]
-    pub fn js_log(msg: &str);
+    fn js_log(msg: &str);
 
     #[wasm_bindgen(js_namespace = console, js_name = "warn")]
-    pub fn js_warn(msg: &str);
+    fn js_warn(msg: &str);
 
     #[wasm_bindgen(js_namespace = console, js_name = "error")]
-    pub fn js_error(msg: &str);
+    fn js_error(msg: &str);
 
     #[wasm_bindgen(js_namespace = console, js_name = "debug")]
-    pub fn js_debug(msg: &str);
+    fn js_debug(msg: &str);
 }
 
 #[wasm_bindgen]
 #[derive(Debug)]
 pub enum LogLevel {
-    info,
-    warn,
-    error,
-    debug,
+    Info,
+    Warn,
+    Error,
+    Debug,
 }
 
 #[wasm_bindgen]
@@ -62,41 +62,41 @@ pub fn wasm_logger(level: LogLevel, app_type: Option<ApplicationType>, message: 
     };
 
     match level {
-        LogLevel::info => js_log(
+        LogLevel::Info => js_log(
             &format!(
                 "[{}][{:#?}][{:#?}][{:#?}]",
                 fmt_date,
-                LogLevel::info,
+                LogLevel::Info,
                 selected_app_type,
                 &message
             )
             .to_string(),
         ),
-        LogLevel::warn => js_warn(
+        LogLevel::Warn => js_warn(
             &format!(
                 "[{}][{:#?}][{:#?}][{:#?}]",
                 fmt_date,
-                LogLevel::warn,
+                LogLevel::Warn,
                 selected_app_type,
                 &message
             )
             .to_string(),
         ),
-        LogLevel::error => js_error(
+        LogLevel::Error => js_error(
             &format!(
                 "[{}][{:#?}][{:#?}][{:#?}]",
                 fmt_date,
-                LogLevel::error,
+                LogLevel::Error,
                 selected_app_type,
                 &message
             )
             .to_string(),
         ),
-        LogLevel::debug => js_debug(
+        LogLevel::Debug => js_debug(
             &format!(
                 "[{}][{:#?}][{:#?}][{:#?}]",
                 fmt_date,
-                LogLevel::debug,
+                LogLevel::Debug,
                 selected_app_type,
                 &message
             )

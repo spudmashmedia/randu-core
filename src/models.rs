@@ -6,7 +6,6 @@
 //!domain models for randomuser.me/api response
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
-use wasm_bindgen::prelude::*;
 
 //-------------------------------------------------------
 // Struct:      InfoStruct

@@ -29,7 +29,7 @@ async fn test_get_user_australia() {
     let expected_nationality_string = "australia";
 
     let results: Vec<String> =
-        test_get_user_base(Gender::male, Nationality::au, expected_count).await;
+        test_get_user_base(Gender::Male, Nationality::AU, expected_count).await;
 
     assert_eq!(results.iter().count(), expected_count as usize);
 
@@ -46,7 +46,7 @@ async fn test_get_user_brazil() {
     let expected_nationality_string = "brazil";
 
     let results: Vec<String> =
-        test_get_user_base(Gender::female, Nationality::br, expected_count).await;
+        test_get_user_base(Gender::Female, Nationality::BR, expected_count).await;
 
     assert_eq!(results.iter().count(), expected_count as usize);
 

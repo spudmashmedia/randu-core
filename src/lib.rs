@@ -6,6 +6,11 @@
 mod models;
 mod utils;
 
+extern crate strum;
+
+#[macro_use]
+extern crate strum_macros;
+
 use js_sys::*;
 use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
@@ -13,39 +18,38 @@ use wasm_bindgen::JsCast;
 use wasm_bindgen_futures::JsFuture;
 use web_sys::{Request, RequestInit, RequestMode, Response};
 
-
 //---------------------------------------------------------------------------
 // STRUCTS & TYPES
 //---------------------------------------------------------------------------
 
 #[wasm_bindgen]
-#[derive(Debug)]
+#[derive(Debug, EnumString, ToString)]
 pub enum Gender {
-    male,
-    female,
-    unknown,
+    Male,
+    Female,
+    Unknown,
 }
 
 #[wasm_bindgen]
-#[derive(Debug)]
+#[derive(Debug, EnumString, ToString)]
 pub enum Nationality {
-    au,
-    br,
-    ca,
-    ch,
-    de,
-    dk,
-    es,
-    fi,
-    fr,
-    gb,
-    ie,
-    ir,
-    no,
-    nl,
-    nz,
-    tr,
-    us,
+    AU,
+    BR,
+    CA,
+    CH,
+    DE,
+    DK,
+    ES,
+    FI,
+    FR,
+    GB,
+    IE,
+    IR,
+    NO,
+    NL,
+    NZ,
+    TR,
+    US,
 }
 
 #[wasm_bindgen]
@@ -216,7 +220,7 @@ async fn get_user_base(url: String) -> Result<Vec<models::UserStruct>, Error> {
     utils::set_panic_hook();
 
     utils::wasm_logger(
-        utils::LogLevel::debug,
+        utils::LogLevel::Debug,
         Some(utils::ApplicationType::Wasm),
         &format!("inside get_user_base. url={:?}", url),
     );
@@ -252,21 +256,22 @@ pub async fn get_user_wasm(
     nationality: Nationality,
     limit: u32,
 ) -> Result<JsValue, JsValue> {
+
     utils::wasm_logger(
-        utils::LogLevel::debug,
+        utils::LogLevel::Debug,
         Some(utils::ApplicationType::Wasm),
         &format!(
-            "inside get_user_wasm. gender={:#?} nationality={:#?} limit={:?}",
-            &gender, &nationality, &limit
+            "inside get_user_wasm. gender={} nationality={} limit={:?}",
+            &gender.to_string().to_lowercase(), &nationality.to_string().to_lowercase(), &limit
         ),
     );
 
     let uri = format!(
-        "https://randomuser.me/api/1.3/?gender={:#?}&nat={:#?}&results={}",
-        gender, nationality, limit
+        "https://randomuser.me/api/1.3/?gender={}&nat={}&results={}",
+        &gender.to_string().to_lowercase(), &nationality.to_string().to_lowercase(), limit
     );
     utils::wasm_logger(
-        utils::LogLevel::debug,
+        utils::LogLevel::Debug,
         Some(utils::ApplicationType::Wasm),
         &format!("get_user_wasm final url: {:#?}", &uri),
     );
@@ -279,7 +284,7 @@ pub async fn get_user_wasm(
         .collect();
 
     utils::wasm_logger(
-        utils::LogLevel::debug,
+        utils::LogLevel::Debug,
         Some(utils::ApplicationType::Wasm),
         serde_json::to_string(&output).unwrap().as_str(),
     );

@@ -3,28 +3,40 @@
  *  Licensed under the MIT License. See License.md in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { useState, useEffect } from "react";
-import { getGenderArray, getNationalityArray } from "../lib/wasm";
-import { v1 as uuidv1 } from "uuid";
+import React from "react";
+
+import { makeStyles } from "@material-ui/core/styles";
+
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+}));
 
 export default function DropDown(props) {
-  let { label, data } = props;
+  let { label } = props;
+  let classes = useStyles;
 
-  console.log(`DropDown: ${JSON.stringify(data, null, 2)}`);
-
-  let moo = [];
-  console.debug(`Nationality array\n${JSON.stringify(data, null, 2)}`);
+  let { data, selected, onChange } = props;
 
   return (
     <div>
-      <label>{label}</label>
-      <select id={label}>
-        {moo.forEach(({ id, name }) => {
-          <option onLoad={onLoadHandler} key={uuidv1()} value={id}>
-            {name}
-          </option>;
-        })}
-      </select>
+      <FormControl className={classes.formControl}>
+        <InputLabel>{label}</InputLabel>
+        <Select value={selected} onChange={onChange}>
+          {data.map((items) => (
+            <MenuItem key={items.value} value={items.value}>
+              {items.key}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </div>
   );
 }
