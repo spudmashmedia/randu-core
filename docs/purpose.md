@@ -246,7 +246,7 @@ I envisage carving out large amounts of javascript data mapping code in future w
 
 Note this code will also work on server side on NodeJS and Deno with the TypeScript definitions so definitely see a plus to using this tech stack.
 
-However to finish off there a time and place for everything:
+However to finish off there is a time and place for everything:
 - Prototyping: go with integrating with JavaScript to quicker delivery projects/ideas.
 - Production Ready: consider swapping out business logic code or process intensive code with Rust WASM for realiability.
 

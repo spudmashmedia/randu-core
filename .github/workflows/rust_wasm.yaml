@@ -50,6 +50,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x] # no quotes on the node versions
+    if: success() && github.ref == 'refs/heads/master'
     steps:
       - name: "[Download Artifacts from previous build step]"
         uses: actions/download-artifact@v1
