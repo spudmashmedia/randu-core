@@ -49,7 +49,7 @@ jobs:
     needs: wasm_pack
     strategy:
       matrix:
-        node-version: [12.x] # no quotes on the node versions
+        node-version: [14.x] # no quotes on the node versions
     if: success() && github.ref == 'refs/heads/master'
     steps:
       - name: "[Download Artifacts from previous build step]"
