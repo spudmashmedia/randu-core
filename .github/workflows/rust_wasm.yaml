@@ -58,7 +58,7 @@ jobs:
           name: wasm_output
 
       - name: "[Setup Node ${{ matrix.node-version}}]"
-        uses: actions/setup-node@v1.4.2
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: "${{ env.NPM_PUBLISH_CONFIG_URL }}"
